@@ -4,8 +4,10 @@ import com.example.ytparser.network.client.provideApi
 import com.example.ytparser.network.client.provideOkHttp
 import com.example.ytparser.network.client.provideRetrofit
 import com.example.ytparser.repository.Repository
+import com.example.ytparser.ui.fragments.playlist_detail.DetailsViewModel
 import com.example.ytparser.ui.fragments.playlists.PlaylistsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.scope.get
 import org.koin.dsl.module
 
 val youTubeAppModule = module {
@@ -23,5 +25,8 @@ val youTubeAppModule = module {
     }
     viewModel {
         PlaylistsViewModel(get())
+    }
+    viewModel {
+        DetailsViewModel(get())
     }
 }
