@@ -1,13 +1,11 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class PageInfo(
-    @SerialName("totalResults")
+    @SerializedName("totalResults")
     val totalResults: Int,
-    @SerialName("resultsPerPage")
+    @SerializedName("resultsPerPage")
     val resultsPerPage: Int
 )

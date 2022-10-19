@@ -1,32 +1,56 @@
 package com.example.ytparser.ui.fragments.playlists
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.VideoView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ytparser.R
+import coil.Coil
+import coil.load
+import com.example.tools.load
+import com.example.ytparser.databinding.VideoPlaceholderBinding
+import com.example.ytparser.model.Item
 
-class PlaylistAdapter: RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder>() {
+class PlaylistAdapter(private val itemClick: ItemClick) : RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder>() {
+
+    private var mplaylist = mutableListOf<Item>()
+    fun setPlaylist(newData: List<Item>) {
+        mplaylist.clear()
+        mplaylist.addAll(newData)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.video_placeholder, parent, false)
-        return ItemViewHolder(view)
+        val binding: VideoPlaceholderBinding =
+            VideoPlaceholderBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.onBind(mplaylist[position])
+        holder.itemView.setOnClickListener {
+            itemClick.clickListener(mplaylist[position])
+        }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return mplaylist.size
     }
 
-    class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
-        var videoView = view.findViewById<VideoView>(R.id.video)
-        var playlistText = view.findViewById<TextView>(R.id.playlistText)
-        var textDescription = view.findViewById<TextView>(R.id.text_description)
-        var textVideoSeries = view.findViewById<TextView>(R.id.text_video_series)
+    class ItemViewHolder(private val binding: VideoPlaceholderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(item: Item){
+            binding.textTitle.text = item.snippet.title
+            binding.textVideoSeries.text = item.contentDetails.itemCount.toString() + " video series"
+            binding.playlistText.text = item.snippet.channelTitle
+            binding.preView.load(item.snippet.thumbnails.medium.url)
+        }
+    }
+
+    interface ItemClick {
+        fun clickListener(item: Item)
     }
 }

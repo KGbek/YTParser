@@ -1,19 +1,17 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class YouTubeApiResponse(
-    @SerialName("kind")
+    @SerializedName("kind")
     val kind: String,
-    @SerialName("etag")
+    @SerializedName("etag")
     val etag: String,
-    @SerialName("nextPageToken")
+    @SerializedName("nextPageToken")
     val nextPageToken: String,
-    @SerialName("pageInfo")
+    @SerializedName("pageInfo")
     val pageInfo: PageInfo,
-    @SerialName("items")
+    @SerializedName("items")
     val items: List<Item>
 )

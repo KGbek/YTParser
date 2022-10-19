@@ -1,19 +1,17 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class Item(
-    @SerialName("kind")
+    @SerializedName("kind")
     val kind: String,
-    @SerialName("etag")
+    @SerializedName("etag")
     val etag: String,
-    @SerialName("id")
+    @SerializedName("id")
     val id: String,
-    @SerialName("snippet")
+    @SerializedName("snippet")
     val snippet: Snippet,
-    @SerialName("contentDetails")
+    @SerializedName("contentDetails")
     val contentDetails: ContentDetails
-)
+): java.io.Serializable

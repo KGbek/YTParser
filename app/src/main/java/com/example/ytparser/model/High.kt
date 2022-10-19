@@ -1,15 +1,13 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class High(
-    @SerialName("url")
+    @SerializedName("url")
     val url: String,
-    @SerialName("width")
+    @SerializedName("width")
     val width: Int,
-    @SerialName("height")
+    @SerializedName("height")
     val height: Int
 )

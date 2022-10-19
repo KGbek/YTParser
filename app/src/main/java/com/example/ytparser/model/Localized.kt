@@ -1,13 +1,11 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class Localized(
-    @SerialName("title")
+    @SerializedName("title")
     val title: String,
-    @SerialName("description")
+    @SerializedName("description")
     val description: String
 )

@@ -1,11 +1,9 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class ContentDetails(
-    @SerialName("itemCount")
+    @SerializedName("itemCount")
     val itemCount: Int
 )

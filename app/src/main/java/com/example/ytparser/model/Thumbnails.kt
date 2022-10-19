@@ -1,19 +1,17 @@
 package com.example.ytparser.model
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class Thumbnails(
-    @SerialName("default")
+    @SerializedName("default")
     val default: Default,
-    @SerialName("medium")
+    @SerializedName("medium")
     val medium: Medium,
-    @SerialName("high")
+    @SerializedName("high")
     val high: High,
-    @SerialName("standard")
+    @SerializedName("standard")
     val standard: Standard,
-    @SerialName("maxres")
+    @SerializedName("maxres")
     val maxres: Maxres
 )
